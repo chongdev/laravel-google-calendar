@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\GoogleCalendar\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    
+
+
+    $event = new Event;
+    $event->name = 'test form app';
+    $event->startDateTime = Carbon\Carbon::now();
+    $event->endDateTime = Carbon\Carbon::now()->addHour();
+    $event->save();
+
+    $eventList = Event::get();
+    dd($eventList);
+    // $e = $e[0];
+    // dd($e->startDateTime->toDateTimeString());
+    // dd($e->summary);
 });
