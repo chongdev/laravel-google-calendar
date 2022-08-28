@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\gCalendarController;
 use Illuminate\Support\Facades\Route;
 use Spatie\GoogleCalendar\Event;
 
@@ -18,19 +20,22 @@ use Spatie\GoogleCalendar\Event;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    
+// Route::get('/', function () {
 
 
-    $event = new Event;
-    $event->name = 'test form app';
-    $event->startDateTime = Carbon\Carbon::now();
-    $event->endDateTime = Carbon\Carbon::now()->addHour();
-    $event->save();
 
-    $eventList = Event::get();
-    dd($eventList);
-    // $e = $e[0];
-    // dd($e->startDateTime->toDateTimeString());
-    // dd($e->summary);
-});
+//     $event = new Event;
+//     $event->name = 'test form app';
+//     $event->startDateTime = Carbon\Carbon::now();
+//     $event->endDateTime = Carbon\Carbon::now()->addHour();
+//     $event->save();
+
+//     $eventList = Event::get();
+//     dd($eventList);
+//     // $e = $e[0];
+//     // dd($e->startDateTime->toDateTimeString());
+//     // dd($e->summary);
+// });
+
+Route::resource('gcalendar', gCalendarController::class);
+// Route::resource('booking', BookingController::class);
