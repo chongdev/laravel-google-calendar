@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Spatie\GoogleCalendar\Event;
 
 class BookingController extends Controller
 {
@@ -13,7 +15,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard');
     }
 
     /**
@@ -34,7 +36,18 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $startTime = Carbon::parse($request->input('meeting_date') . ' ' . $request->input('meeting_time'), 'Asia/Bangkok');
+        $endTime = (clone $startTime)->addHour();
+
+        // dd($startTime, $endTime);
+
+        Event::create([
+            'name'  => $request->input('name'),
+            'startDateTime' => $startTime,
+            'endDateTime' => $endTime,
+        ]);
+
+        return redirect()->back()->withMessage('Appointment Booked');
     }
 
     /**

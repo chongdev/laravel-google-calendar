@@ -37,5 +37,5 @@ use Spatie\GoogleCalendar\Event;
 //     // dd($e->summary);
 // });
 
-Route::resource('gcalendar', gCalendarController::class);
-// Route::resource('booking', BookingController::class);
+// Route::resource('gcalendar', gCalendarController::class);
+Route::resource('booking', BookingController::class);
